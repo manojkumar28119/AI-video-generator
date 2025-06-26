@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from gpt_service import GPTService
 from video_service import VideoService
@@ -8,6 +9,15 @@ print("[MAIN] Starting AI Video Generator API...")
 print(f"[MAIN] Startup time: {datetime.datetime.now()}")
 
 app = FastAPI()
+
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 # Initialize services
 print("[MAIN] Initializing services...")
@@ -60,3 +70,8 @@ async def generate_video(data: PromptInput):
         }
     finally:
         print(f"[MAIN] ========== END REQUEST {request_id} ==========\n")
+
+
+
+
+#uvicorn main:app --reload # To run the server, use the command:
