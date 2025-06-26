@@ -51,7 +51,10 @@ async def generate_video(data: PromptInput):
                 "video_url": video_result["video_url"],
                 "keywords": keywords,
                 "search_query": search_query,
-                "request_id": request_id
+                "request_id": request_id,
+                "status_code": 200,
+                "message": "Video generated successfully",
+                "success": True,
             }
         else:
             print(f"[MAIN] PARTIAL SUCCESS: Keywords extracted but no video found for request {request_id}")
