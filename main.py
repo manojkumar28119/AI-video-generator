@@ -48,12 +48,14 @@ async def generate_video(data: PromptInput):
         if video_result.get("success"):
             print(f"[MAIN] SUCCESS: Video generation completed for request {request_id}")
             return {
-                "video_url": video_result["video_url"],
-                "keywords": keywords,
-                "search_query": search_query,
-                "request_id": request_id,
+                "data" : {
+                    "video_url": video_result["video_url"],
+                    "keywords": keywords,
+                    "search_query": search_query,
+                    "request_id": request_id,
+                },
                 "status_code": 200,
-                "message": "Video generated successfully",
+                "message": "Video generated successfully",  
                 "success": True,
             }
         else:
